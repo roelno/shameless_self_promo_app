@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
+import com.zeldaselfpromoapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         contactNameEditText = findViewById(R.id.edit_text_contact_name)
         contactNumberEditText = findViewById(R.id.edit_text_contact_number)
@@ -37,8 +37,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onPreviewClicked() {
-        val testString = contactNameEditText?.text.toString() + ", " + contactNumberEditText?.text.toString()
-        Toast.makeText(this, testString, Toast.LENGTH_LONG).show()
+        val contactName = contactNameEditText?.text.toString()
+        val contactNumber = contactNumberEditText?.text.toString()
+        val displayName = myDisplayNameEditText?.text.toString()
+        val includedJunior = juniorCheckBox?.isChecked
+        val jobTitle = jobTitleSpinner?.selectedItem.toString()
+        val immediateStart = startCheckBox?.isChecked
+        val startDate = startDateEditText?.text.toString()
 
+        val testString = "Hello, $displayName.\n Junior: $includedJunior, Job Title: $jobTitle, Start Date: $startDate"
+
+        Toast.makeText(this, testString, Toast.LENGTH_LONG).show()
     }
 }
