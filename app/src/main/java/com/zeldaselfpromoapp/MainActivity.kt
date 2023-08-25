@@ -11,41 +11,28 @@ import com.zeldaselfpromoapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var contactNameEditText: TextInputEditText? = null
-    private var contactNumberEditText: TextInputEditText? = null
-    private var myDisplayNameEditText: TextInputEditText? = null
-    private var startDateEditText: TextInputEditText? = null
-    private var juniorCheckBox: CheckBox? = null
-    private var startCheckBox: CheckBox? = null
-    private var jobTitleSpinner: Spinner? = null
+    private lateinit var binding: ActivityMainBinding;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        contactNameEditText = findViewById(R.id.edit_text_contact_name)
-        contactNumberEditText = findViewById(R.id.edit_text_contact_number)
-        myDisplayNameEditText = findViewById(R.id.edit_text_my_display_name)
-        startDateEditText = findViewById(R.id.edit_text_start_date)
-        juniorCheckBox = findViewById(R.id.check_box_junior)
-        startCheckBox = findViewById(R.id.check_box_immediate_start)
-        jobTitleSpinner = findViewById(R.id.spinner_job_title)
-
-        val previewButton = findViewById<Button>(R.id.button_preview)
-        previewButton.setOnClickListener {
+        binding.buttonPreview.setOnClickListener {
             onPreviewClicked()
         }
     }
 
     private fun onPreviewClicked() {
-        val contactName = contactNameEditText?.text.toString()
-        val contactNumber = contactNumberEditText?.text.toString()
-        val displayName = myDisplayNameEditText?.text.toString()
-        val includedJunior = juniorCheckBox?.isChecked
-        val jobTitle = jobTitleSpinner?.selectedItem.toString()
-        val immediateStart = startCheckBox?.isChecked
-        val startDate = startDateEditText?.text.toString()
+        val contactName = binding.editTextContactName.text.toString()
+        val contactNumber = binding.editTextContactNumber.text.toString()
+        val displayName = binding.editTextMyDisplayName.text.toString()
+        val includedJunior = binding.checkBoxJunior.isChecked
+        val jobTitle = binding.spinnerJobTitle.selectedItem?.toString()
+        val immediateStart = binding.checkBoxImmediateStart.isChecked
+        val startDate = binding.editTextStartDate.text.toString()
 
-        val testString = "Hello, $displayName.\n Junior: $includedJunior, Job Title: $jobTitle, Start Date: $startDate"
+        val testString = "Hello, $displayName.\n Junior: $includedJunior, Job Title: $jobTitle Start Date: $startDate"
 
         Toast.makeText(this, testString, Toast.LENGTH_LONG).show()
     }
