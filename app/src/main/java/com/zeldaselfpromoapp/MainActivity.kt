@@ -1,5 +1,6 @@
 package com.zeldaselfpromoapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -28,8 +29,7 @@ class MainActivity : AppCompatActivity() {
         val immediateStart = binding.checkBoxImmediateStart.isChecked
         val startDate = binding.editTextStartDate.text.toString()
 
-        val testString = "Hello, $displayName.\n Junior: $includedJunior, Job Title: $jobTitle Start Date: $startDate"
-
-        Toast.makeText(this, testString, Toast.LENGTH_LONG).show()
+        val previewActivityIntent = Intent(this, PreviewActivity::class.java)
+        startActivity(previewActivityIntent)
     }
 }
