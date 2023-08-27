@@ -35,14 +35,16 @@ class MainActivity : AppCompatActivity() {
         val immediateStart = binding.checkBoxImmediateStart.isChecked
         val startDate = binding.editTextStartDate.text.toString()
 
+        val message = Message(contactName, contactNumber, displayName, includedJunior, jobTitle, immediateStart, startDate)
+
         val previewActivityIntent = Intent(this, PreviewActivity::class.java)
-        previewActivityIntent.putExtra("Contact Name", contactName)
-        previewActivityIntent.putExtra("Contact Number", contactNumber)
-        previewActivityIntent.putExtra("Display Name", displayName)
-        previewActivityIntent.putExtra("Include Junior", includedJunior)
-        previewActivityIntent.putExtra("Job Title", jobTitle)
-        previewActivityIntent.putExtra("Immediate Start", immediateStart)
-        previewActivityIntent.putExtra("Start Date", startDate)
+        previewActivityIntent.putExtra("Contact Name", message.contactName)
+        previewActivityIntent.putExtra("Contact Number", message.contactNumber)
+        previewActivityIntent.putExtra("Display Name", message.displayName)
+        previewActivityIntent.putExtra("Include Junior", message.includedJunior)
+        previewActivityIntent.putExtra("Job Title", message.jobTitle)
+        previewActivityIntent.putExtra("Immediate Start", message.immediateStart)
+        previewActivityIntent.putExtra("Start Date", message.startDate)
 
         startActivity(previewActivityIntent)
     }
