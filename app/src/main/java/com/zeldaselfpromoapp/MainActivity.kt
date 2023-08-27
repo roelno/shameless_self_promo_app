@@ -38,13 +38,7 @@ class MainActivity : AppCompatActivity() {
         val message = Message(contactName, contactNumber, displayName, includedJunior, jobTitle, immediateStart, startDate)
 
         val previewActivityIntent = Intent(this, PreviewActivity::class.java)
-        previewActivityIntent.putExtra("Contact Name", message.contactName)
-        previewActivityIntent.putExtra("Contact Number", message.contactNumber)
-        previewActivityIntent.putExtra("Display Name", message.displayName)
-        previewActivityIntent.putExtra("Include Junior", message.includedJunior)
-        previewActivityIntent.putExtra("Job Title", message.jobTitle)
-        previewActivityIntent.putExtra("Immediate Start", message.immediateStart)
-        previewActivityIntent.putExtra("Start Date", message.startDate)
+        previewActivityIntent.putExtra("Message", message)
 
         startActivity(previewActivityIntent)
     }
