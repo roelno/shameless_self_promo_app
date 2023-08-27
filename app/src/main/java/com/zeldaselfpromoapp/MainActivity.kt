@@ -3,6 +3,7 @@ package com.zeldaselfpromoapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.zeldaselfpromoapp.databinding.ActivityMainBinding
 
@@ -18,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         binding.buttonPreview.setOnClickListener {
             onPreviewClicked()
         }
+
+        val spinnerValue = arrayOf("Android Developer", "Android Engineer")
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerValue)
+        binding.spinnerJobTitle.adapter = spinnerAdapter
+
     }
 
     private fun onPreviewClicked() {
