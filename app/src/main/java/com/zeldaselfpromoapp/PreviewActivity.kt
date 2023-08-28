@@ -9,7 +9,7 @@ import java.io.Serializable
 
 class PreviewActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityPreviewBinding;
+    private lateinit var binding: ActivityPreviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,22 +17,26 @@ class PreviewActivity : AppCompatActivity() {
         binding = ActivityPreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // retrieve the value
-        val contactName = intent.getStringExtra("Contact Name")
-        val contactNumber = intent.getStringExtra("Contact Number")
-        val displayName = intent.getStringExtra("Display Name")
-        val includeJunior = intent.getBooleanExtra("Include Junior", false)
-        val jobTitle = intent.getStringExtra("Job Title")
-        val immediateStart = intent.getBooleanExtra("Immediate Start", false)
-        val startDate = intent.getStringExtra("Start Date")
+        // retrieve the data
+        val message = getSerializable(this, "Message", Message::class.java)
 
-        val testString = "Contact Name: $contactName, Contact Number: $contactNumber, Display Name: $displayName, " +
-                "Include Junior: $includeJunior, Job Title: $jobTitle, Immediate Start: $immediateStart, Start Date: $startDate"
+        // use the data
+        val messagePreviewText = """
+            Hi ${message.contactName}
+            
+            My name is ${message.displayName} and I am a ${message.getFullJobDescription()}.
+            
+            I have a portfolio to demonstrate my technical skills that I can show on request.
+            
+            I am able to start a new position ${message.getAvailability()}.
+            
+            Please get in touch if you have any suitable roles for me.
+            
+            Thanks and best regards.
+            
+        """.trimIndent()
 
-        binding.textViewMessage.text = testString
-
-
-        val message = getSerializable(this, "Message", Message::class.java);
+        binding.textViewMessage.text = messagePreviewText
     }
 
     private fun <T : Serializable?> getSerializable(activity: Activity, name: String, clazz: Class<T>): T
