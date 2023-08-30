@@ -17,24 +17,28 @@ class PreviewActivity : AppCompatActivity() {
         binding = ActivityPreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        displayMessage()
+    }
+
+    private fun displayMessage() {
         // retrieve the data
         val message = getSerializable(this, "Message", Message::class.java)
 
         // use the data
         val messagePreviewText = """
-            Hi ${message.contactName}
-            
-            My name is ${message.displayName} and I am a ${message.getFullJobDescription()}.
-            
-            I have a portfolio to demonstrate my technical skills that I can show on request.
-            
-            I am able to start a new position ${message.getAvailability()}.
-            
-            Please get in touch if you have any suitable roles for me.
-            
-            Thanks and best regards.
-            
-        """.trimIndent()
+                Hi ${message.contactName}
+                
+                My name is ${message.displayName} and I am a ${message.getFullJobDescription()}.
+                
+                I have a portfolio to demonstrate my technical skills that I can show on request.
+                
+                I am able to start a new position ${message.getAvailability()}.
+                
+                Please get in touch if you have any suitable roles for me.
+                
+                Thanks and best regards.
+                
+            """.trimIndent()
 
         binding.textViewMessage.text = messagePreviewText
     }
