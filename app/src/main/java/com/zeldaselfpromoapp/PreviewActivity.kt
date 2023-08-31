@@ -1,6 +1,8 @@
 package com.zeldaselfpromoapp
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,7 +26,14 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun setUpButton() {
-        //TODO: send Message intent
+        // send Message intent
+        binding.buttonSendMessage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("smsto: ${message.contactNumber}")  // Only SMS apps respond to this.
+                putExtra("sms_body", messagePreviewText)
+            }
+            startActivity(intent)
+        }
     }
 
 
